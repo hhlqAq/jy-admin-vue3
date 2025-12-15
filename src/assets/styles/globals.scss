@@ -1,0 +1,37 @@
+@use "./el-themes";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 400;
+  background-color: var(--g-container-bg);
+  -webkit-tap-highlight-color: transparent;
+
+  &.overflow-hidden {
+    overflow: hidden;
+  }
+}
+
+#app {
+  height: 100%;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+[data-fixed-calc-width] {
+  position: fixed;
+  right: 0;
+  left: 50%;
+  width: calc(100% - var(--g-main-sidebar-actual-width) - var(--g-sub-sidebar-actual-width));
+  transform:
+    translateX(-50%) translateX(calc(var(--g-main-sidebar-actual-width) / 2))
+    translateX(calc(var(--g-sub-sidebar-actual-width) / 2));
+}
