@@ -8,6 +8,12 @@ export interface ResultData<T = any> extends Result {
   data: T
 }
 
+// * 分页请求参数
+export interface ReqPage {
+  pageNum: number
+  pageSize: number
+}
+
 // * 分页响应参数
 export interface ResPage<T> {
   records: T[]
@@ -15,13 +21,9 @@ export interface ResPage<T> {
   pageSize: number
   total: number
 }
+
+// * 列表响应参数
 export interface ResList<T> {
   list: T[]
   total: number
-}
-
-// * 分页请求参数
-export interface ReqPage {
-  pageNum: number
-  pageSize: number
 }

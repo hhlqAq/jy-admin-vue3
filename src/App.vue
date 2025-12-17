@@ -30,7 +30,6 @@ import.meta.env.VITE_APP_DEBUG_TOOL === 'vconsole' && new VConsole()
         '--g-sub-sidebar-actual-width': '200px',
       }"
     >
-      ;
       <component :is="Component" v-if="isAuth" />
       <NotAllowed v-else />
     </router-view>

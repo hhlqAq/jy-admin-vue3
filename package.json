@@ -16,7 +16,8 @@
     "lint": "eslint . --fix --cache",
     "lint:stylelint": "stylelint \"src/**/*.{css,scss,vue}\" --cache --fix",
     "generate:icons": "esno ./scripts/generate.icons.ts",
-    "commit": "git pull && git add -A && git cz && git push"
+    "commit": "git pull && git add -A && npx git-cz && git push",
+    "commit:force": "git pull && git add -A && npx git-cz && git push --force"
   },
   "dependencies": {
     "axios": "^1.13.2",

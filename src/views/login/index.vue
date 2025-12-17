@@ -2,6 +2,7 @@
 import type { FormInstance, FormRules } from 'element-plus'
 import type { ReqLoginForm, ReqRegisterForm } from '@/api/interface/modules/login'
 import { ElMessage, ElNotification } from 'element-plus'
+
 import localName from '@/constants/localName'
 import useSettingsStore from '@/store/modules/settings'
 import useUserStore from '@/store/modules/user'
@@ -339,131 +340,193 @@ function handleReset() {
 </template>
 
 <style lang="scss" scoped>
-.login-container {
-  --at-apply: relative w-full h-full;
-}
-
-.bg-banner {
-  --at-apply: fixed w-full h-full z-0 bg-cover inset-0;
-}
-
-.login-banner {
-  --at-apply: absolute top-[30%] left-[10%] w-[550px] -translate-y-[50%] animate-[float_5s_linear_infinite];
-
-  @keyframes float {
-    0% {
-      transform: translateY(0);
+    :deep(input[type="password"]::-ms-reveal) {
+      display: none;
     }
 
-    50% {
-      transform: translateY(-20px);
-    }
+    .login-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
 
-    100% {
-      transform: translateY(0);
-    }
-  }
-}
+      .bg-banner {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
 
-#login-box {
-  --at-apply:
-    absolute top-[50%] right-[120px]
-    flex justify-between
-    w-[500px]
-    transform -translate-y-[50%]
-    overflow-hidden rounded-[10px]
-    bg-[var(--g-container-bg) ]
-    shadow-[var(--el-box-shadow) ];
-}
+        .login-banner {
+          position: absolute;
+          top: 30%;
+          left: 10%;
+          width: 550px;
+          transform: translateY(-50%);
+          animation: float 5s linear 0ms infinite;
 
-.login-form {
-  --at-apply: flex flex-col justify-center w-[500px] min-h-[500px] p-x-[50px] p-y-[40px] overflow-hidden;
-}
+          @keyframes float {
+            0% {
+              transform: translateY(0);
+            }
 
-.title-container {
-  --at-apply: relative flex-center m-b-[15px];
-}
+            50% {
+              transform: translateY(-20px);
+            }
 
-.logo {
-  --at-apply: w-[40px] h-[40px] rounded-[4px];
-}
+            100% {
+              transform: translateY(0);
+            }
+          }
+        }
+      }
 
-.title {
-  --at-apply: m-l-[20px] text-1.3em font-bold color-[var(--el-text-color-primary) ];
-}
+      #login-box {
+        position: absolute;
+        top: 50%;
+        right: 120px;
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        background-color: var(--g-container-bg);
+        border-radius: 10px;
+        box-shadow: var(--el-box-shadow);
+        transform: translateY(-50%);
 
-.flex-bar {
-  --at-apply:
-    flex items-center justify-between
-    mb-[20px];
-}
+        --at-apply: shadow-[var(--el-box-shadow) ];
 
-.sub-link {
-  --at-apply:
-    flex-center
-    m-t-[20px]
-    text-[14px] color-[var(--el-text-color-secondary) ];
-}
+        .login-form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 500px;
+          min-height: 500px;
+          padding: 40px 50px;
+          overflow: hidden;
 
-.el-form-item {
-  margin-bottom: 24px;
+          .title-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
 
-  :deep(.el-input) {
-    width: 100%;
-    height: 48px;
-    line-height: inherit;
+            .logo {
+              width: 40px;
+              height: 40px;
+              border-radius: 4px;
+            }
 
-    input {
-      height: 48px;
-    }
+            .title {
+              margin-left: 20px;
+              font-size: 1.3em;
+              font-weight: bold;
+              color: var(--el-text-color-primary);
+            }
+          }
 
-    .el-input__prefix,
-    .el-input__suffix {
-      display: flex;
-      align-items: center;
-    }
+          .verify-img {
+            overflow: hidden;
+            border-radius: 0 5px 5px 0;
+          }
+        }
 
-    .el-input__prefix {
-      left: 10px;
-    }
+        .el-form-item {
+          margin-bottom: 24px;
 
-    .el-input__suffix {
-      right: 10px;
-    }
+          :deep(.el-input) {
+            width: 100%;
+            height: 48px;
+            line-height: inherit;
 
-    &.verify-code {
-      .el-input-group__append {
-        padding: 0;
+            input {
+              height: 48px;
+            }
+
+            .el-input__prefix,
+            .el-input__suffix {
+              display: flex;
+              align-items: center;
+            }
+
+            .el-input__prefix {
+              left: 10px;
+            }
+
+            .el-input__suffix {
+              right: 10px;
+            }
+
+            &.verify-code {
+              .el-input-group__append {
+                padding: 0;
+              }
+            }
+          }
+        }
+
+        :deep(.el-divider__text) {
+          background-color: var(--g-container-bg);
+        }
+
+        .flex-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 20px;
+        }
+
+        .sub-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 20px;
+          font-size: 14px;
+          color: var(--el-text-color-secondary);
+
+          .text {
+            margin-right: 10px;
+          }
+        }
       }
     }
-  }
-}
 
-:deep(.el-divider__text) {
-  background-color: var(--g-container-bg);
-}
+    .copyright {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 20px;
+      margin: 0;
+    }
 
-[data-mode="mobile"] {
-  .bg-banner {
-    --at-apply: "!bg-white";
-  }
+    [data-mode="mobile"] {
+      .login-container {
+        .bg-banner {
+          background: #fff !important;
+        }
 
-  .login-banner {
-    --at-apply: "hidden";
-  }
+        #login-box {
+          position: relative;
+          top: inherit;
+          right: 0;
+          left: inherit;
+          flex-direction: column;
+          justify-content: start;
+          width: 100%;
+          height: calc(100% - 60px);
+          border-radius: 0;
+          box-shadow: none;
+          transform: translateX(0) translateY(0);
 
-  #login-box {
-    --at-apply:
-      relative top-[inherit] left-[inherit] right-[0px]
-      flex-col justify-start
-      h-[calc(100% - 60px) ] w-[100%]
-      rounded-0
-      shadow-[none]
-      translate-y-[0] translate-x-[0];
-  }
+          .login-form {
+            width: 100%;
+            min-height: auto;
+            padding: 30px;
+          }
+        }
+      }
 
-  .login-form {
-    --at-apply: w-[100%] min-h-auto p-[30px];
-  }
-}
+      .copyright {
+        position: relative;
+      }
+    }
 </style>
